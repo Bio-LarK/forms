@@ -13,8 +13,9 @@ angular
     'ngAnimate',
     'ngRoute'
   ])
-    .run(function(pageService, $rootScope) {
+    .run(function(pageService, $rootScope, $location) {
         $rootScope.pageService = pageService;
+        $rootScope.$location = $location;
     })
   .config(function ($routeProvider) {
     $routeProvider.when('/dashboard', {
