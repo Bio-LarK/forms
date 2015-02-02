@@ -101,21 +101,35 @@
             <input type="email" class="form-control" name="p_email" id="p_email" placeholder="Enter the email">
         </div>
 
+        <h3>Information</h3>
+
+
         <div class="form-group">
-            <label for="p_email">Email</label>
-            <input type="email" class="form-control" name="p_email" id="p_email" placeholder="Enter the email">
+            <label>Clinical Phenotype (2 or more clinical features required)</label>
+            <ui-select
+                    reset-search-input="true"
+                    multiple
+                    ng-model="phenotype.selectedTerms"
+                    theme="bootstrap"
+                    ng-disabled="disabled"
+                    style="width: 100%;"
+                    title="Select a term">
+                <ui-select-match placeholder="Select term...">
+                    {{ $item.name }}
+                </ui-select-match>
+                <ui-select-choices repeat="term in phenotypeTerms | propsFilter: {name: $select.search}"
+                                   refresh="refreshPhenotypeTerms($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="term.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
         </div>
 
-        <h3>Infornmation</h3>
         <div class="form-group">
             <label for="pedigree">Pedigree with affecteds/unaffecteds/consanguinity/Gestational age if Pregnant:</label>
             <textarea ng-change="pedigreeChanged(pedigree)" ng-model="pedigree" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" class="form-control" rows="3" name="pedigree" id="pedigree" placeholder="Enter the pedigree"></textarea>
         </div>
-        <div>
-            Preview
-            <div ng-bind-html="pedigreePreview">
-
-            </div>
+        <div class="well" ng-bind-html="pedigreePreview">
         </div>
 
 
