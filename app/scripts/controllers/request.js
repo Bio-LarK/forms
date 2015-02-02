@@ -8,7 +8,7 @@
  * Controller of the formsApp
  */
 angular.module('formsApp')
-  .controller('RequestCtrl', function ($scope, pageService, annotatorService, annotationMarkupService) {
+  .controller('RequestCtrl', function ($scope, pageService, pedigreeMarkupService) {
         $scope.awesomeThings = [
           'HTML5 Boilerplate',
           'AngularJS',
@@ -26,16 +26,8 @@ angular.module('formsApp')
         }
 
         function pedigreeChanged(pedigree) {
-            annotatePedigree(pedigree).then(function(annotations) {
-               $scope.pedigreePreview = generatePedigreePreview(pedigree, annotations);
+            pedigreeMarkupService.markup(pedigree).then(function(markup) {
+                $scope.pedigreePreview = markup;
             });
-        }
-
-        function annotatePedigree(pedigree) {
-            return annotatorService.getAnnotations(pedigree);
-        }
-
-        function generatePedigreePreview(pedigree, annotations) {
-            return annotationMarkupService.markup(pedigree, annotations);
         }
   });
