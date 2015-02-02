@@ -31,7 +31,7 @@ describe('Request Form', function() {
         it('should tag the input', function() {
             pedigreeInput.sendKeys('the patient has short arms');
 
-            var shortArmTag = element(by.cssContainingText('.tag', 'short arms'));
+            var shortArmTag = element(by.cssContainingText('.label-phenotype', 'short arms'));
             expect(shortArmTag.isPresent()).toBe(true);
         });
 
