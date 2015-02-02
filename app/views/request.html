@@ -103,6 +103,26 @@
 
         <h3>Information</h3>
 
+        <div class="form-group">
+            <label>Diagnosis if known</label>
+            <ui-select
+                    reset-search-input="true"
+                    ng-model="diagnosis.selected"
+                    theme="bootstrap"
+                    ng-disabled="disabled"
+                    style="width: 100%;"
+                    title="Select a disorder">
+                <ui-select-match placeholder="Select disorder...">
+                    {{ $select.selected.name }}
+                </ui-select-match>
+                <ui-select-choices repeat="disorder in disorders | propsFilter: {name: $select.search}"
+                                   refresh="refreshDisorders($select.search)"
+                                   refresh-delay="0">
+                    <div ng-bind-html="disorder.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
 
         <div class="form-group">
             <label>Clinical Phenotype (2 or more clinical features required)</label>
@@ -127,7 +147,15 @@
 
         <div class="form-group">
             <label for="pedigree">Pedigree with affecteds/unaffecteds/consanguinity/Gestational age if Pregnant:</label>
-            <textarea ng-change="pedigreeChanged(pedigree)" ng-model="pedigree" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" class="form-control" rows="3" name="pedigree" id="pedigree" placeholder="Enter the pedigree"></textarea>
+            <textarea ng-change="pedigreeChanged(pedigree)"
+                      ng-model="pedigree"
+                      ng-model-options="{ updateOn: 'default blur', debounce: {'default': 250, 'blur': 0} }"
+                      class="form-control"
+                      rows="3"
+                      name="pedigree"
+                      id="pedigree"
+                      placeholder="Enter the pedigree">
+            </textarea>
         </div>
         <div class="well" ng-bind-html="pedigreePreview">
         </div>

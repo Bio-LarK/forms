@@ -8,7 +8,10 @@
  * Controller of the formsApp
  */
 angular.module('formsApp')
-    .controller('RequestCtrl', function ($scope, pageService, pedigreeMarkupService, phenotypeService) {
+    .controller('RequestCtrl', function (
+        $scope, pageService, pedigreeMarkupService,
+        phenotypeService,
+        disorderService) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -19,10 +22,12 @@ angular.module('formsApp')
 
         $scope.pedigreeChanged = pedigreeChanged;
         $scope.refreshPhenotypeTerms = refreshPhenotypeTerms;
+        $scope.refreshDisorders = refreshDisorders;
 
-        $scope.phenotype = {
-        };
+        $scope.phenotype = {};
+        $scope.disorder = {};
         $scope.phenotypeTerms = [];
+        $scope.disorders = [];
         ////
 
         function activate() {
@@ -38,6 +43,12 @@ angular.module('formsApp')
         function refreshPhenotypeTerms(term) {
             return phenotypeService.autocomplete(term).then(function(terms) {
                 $scope.phenotypeTerms = terms;
+            });
+        }
+
+        function refreshDisorders(disorder) {
+            return disorderService.autocomplete(disorder).then(function(disorders) {
+                $scope.disorders = disorders;
             });
         }
     });
