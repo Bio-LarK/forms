@@ -18,9 +18,9 @@ describe('Request Form', function() {
 
         beforeEach(function() {
             browser.get('#/request');
-            var select = element(by.model('diagnosis.selected'));
+            var select = element(by.model('diagnosis.selectedDisorders'));
             // there is a hidden input...for some reason, so we need to get the 2nd one
-            diagnosisInput = select.all(by.css('input')).get(1);
+            diagnosisInput = select.element(by.css('input'));
         });
 
         it('should have a diagnosis input', function() {

@@ -16,9 +16,19 @@ describe('Request Form', function() {
             expect(button.isPresent()).toBe(true);
         });
 
-        iit('should go to pedigree editor', function() {
-            button.click();
-            expect(browser.driver.getCurrentUrl()).toBe('http://panogram.github.io/panogram/');
+        it('should go to pedigree editor', function() {
+            var appWindow = browser.getWindowHandle();
+            button.click().then(function () {
+                browser.getAllWindowHandles().then(function (handles) {
+                    newWindowHandle = handles[1];
+                    browser.switchTo().window(newWindowHandle).then(function () {
+                        expect(browser.driver.getCurrentUrl()).toBe('http://panogram.github.io/panogram/');
+                        browser.driver.close().then(function () {
+                            browser.switchTo().window(appWindow);
+                        });
+                    });
+                });
+            });
         });
 
     });
