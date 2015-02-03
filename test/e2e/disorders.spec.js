@@ -12,7 +12,7 @@
  */
 describe('Request Form', function() {
 
-    describe("Pedigree Input", function () {
+    describe("Disorders Input", function () {
 
         var diagnosisInput;
 
@@ -32,22 +32,33 @@ describe('Request Form', function() {
         });
 
         it('should autocomplete terms', function() {
-            var achondroplasiaOption = tryToFindAchondroplasia();
+            var achondroplasiaOption = lookup('achondroplas', 'Achondroplasia');
             expect(achondroplasiaOption.isPresent()).toBe(true);
         });
 
-        it('should add a term', function() {
-            var achondroplasiaOption = tryToFindAchondroplasia();
+        it('should add a terms', function() {
+            var achondroplasiaOption = lookup('achondroplas', 'Achondroplasia');
             achondroplasiaOption.click();
 
-            var achondroplasiaAdded = element(by.cssContainingText('.ui-select-match', 'Achondroplasia'));
+            var achondroplasiaAdded = findTag('Achondroplasia');
             expect(achondroplasiaAdded.isPresent()).toBe(true);
+
+            var option2 = lookup('Metachondromato', 'Metachondromatosis');
+            option2.click();
+
+            var option2Added = findTag('Metachondromatosis');
+            expect(option2Added.isPresent()).toBe(true);
+
         });
 
-        function tryToFindAchondroplasia() {
-            diagnosisInput.sendKeys('achondroplas');
-            var achondroplasiaOption = element(by.cssContainingText('.ui-select-choices-row', 'Achondroplasia'));
-            return achondroplasiaOption;
+        function lookup(partial, full) {
+            diagnosisInput.sendKeys(partial);
+            var option = element(by.cssContainingText('.ui-select-choices-row', full));
+            return option;
+        }
+
+        function findTag(text) {
+            return element(by.cssContainingText('.ui-select-match-item', text));
         }
 
     });

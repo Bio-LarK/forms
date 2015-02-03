@@ -1,38 +1,24 @@
-/**
- * So that I can important high level information about a patient
- * As a medical person
- * I want to the pedigree to have highlighted terms
- */
 
-/**
- * Scenario:
- * Given I am on a form page
- * And I've filled in the Pedigree with 'This patient has short arms'
- * Then I should see 'short arms' highlighted
- */
+
 describe('Request Form', function() {
-    describe("Pedigree Input", function () {
 
-        var pedigreeInput;
+    describe("Pedigree Button", function () {
+
+        var button;
 
         beforeEach(function() {
             browser.get('#/request');
-            pedigreeInput = element(by.model('pedigree'));
-        });
+            button = element(by.linkText('Open Pedigree Editor'));
 
-        it('should have a pedigree input', function() {
-            expect(pedigreeInput.isPresent()).toBe(true);
-        });
-        it('should have a pedigree label', function() {
-            var pedigreeLabel = element(by.cssContainingText('label', 'Pedigree with affecteds/unaffecteds/consanguinity/Gestational age if Pregnant'));
-            expect(pedigreeLabel.isPresent()).toBe(true);
         })
 
-        it('should tag the input', function() {
-            pedigreeInput.sendKeys('the patient has short arms');
+        it('should have a pedigree button', function() {
+            expect(button.isPresent()).toBe(true);
+        });
 
-            var shortArmTag = element(by.cssContainingText('.label-phenotype', 'short arms'));
-            expect(shortArmTag.isPresent()).toBe(true);
+        iit('should go to pedigree editor', function() {
+            button.click();
+            expect(browser.driver.getCurrentUrl()).toBe('http://panogram.github.io/panogram/');
         });
 
     });

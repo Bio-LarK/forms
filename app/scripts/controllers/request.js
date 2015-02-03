@@ -9,7 +9,7 @@
  */
 angular.module('formsApp')
     .controller('RequestCtrl', function (
-        $scope, pageService, pedigreeMarkupService,
+        $scope, pageService, phenotypeMarkupService,
         phenotypeService,
         disorderService) {
         $scope.awesomeThings = [
@@ -20,7 +20,7 @@ angular.module('formsApp')
 
         activate();
 
-        $scope.pedigreeChanged = pedigreeChanged;
+        $scope.phenotypeFullTextChanged = phenotypeFullTextChanged;
         $scope.refreshPhenotypeTerms = refreshPhenotypeTerms;
         $scope.refreshDisorders = refreshDisorders;
 
@@ -34,9 +34,9 @@ angular.module('formsApp')
             pageService.title = 'Complete Genome Sequencing Request';
         }
 
-        function pedigreeChanged(pedigree) {
-            pedigreeMarkupService.markup(pedigree).then(function (markup) {
-                $scope.pedigreePreview = markup;
+        function phenotypeFullTextChanged(pedigree) {
+            phenotypeMarkupService.markup(pedigree).then(function (markup) {
+                $scope.phenotypeFullTextPreview = markup;
             });
         }
 

@@ -7,8 +7,8 @@ describe('Service: pedigreeMarkupService', function () {
 
   // instantiate service
   var pedigreeMarkupService;
-  beforeEach(inject(function (_pedigreeMarkupService_) {
-    pedigreeMarkupService = _pedigreeMarkupService_;
+  beforeEach(inject(function (_phenotypeMarkupService_) {
+    pedigreeMarkupService = _phenotypeMarkupService_;
   }));
 
   it('should do something', function () {
