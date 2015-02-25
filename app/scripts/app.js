@@ -13,7 +13,8 @@ angular
         'ngAnimate',
         'ngRoute',
         'ngSanitize',
-        'ui.select'
+        'ui.select',
+        'ui.bootstrap'
     ])
     .run(function (pageService, $rootScope, $location) {
         $rootScope.pageService = pageService;
