@@ -14,7 +14,11 @@ angular
         'ngRoute',
         'ngSanitize',
         'ui.select',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'google.places',
+        'ngMaterial',
+        'ui.utils',
+        'mgo-angular-wizard'
     ])
     .run(function (pageService, $rootScope, $location) {
         $rootScope.pageService = pageService;
@@ -41,3 +45,4 @@ angular
                 redirectTo: '/dashboard'
             });
     });
+
