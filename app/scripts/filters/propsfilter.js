@@ -8,7 +8,7 @@
  * # propsFilter
  * Filter in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
     .filter('propsFilter', function () {
         return function (items, props) {
             var out = [];

@@ -7,7 +7,7 @@
  * # annotatorService
  * Factory in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
     .factory('annotatorService', function ($q) {
 
         var JSON_PROXY_URL = 'http://jsonp.nodejitsu.com/?url=';

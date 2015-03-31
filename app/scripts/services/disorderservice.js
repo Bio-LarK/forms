@@ -7,7 +7,7 @@
  * # disorderService
  * Factory in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
     .factory('disorderService', function ($http, $q) {
         return {
             autocomplete: autocomplete

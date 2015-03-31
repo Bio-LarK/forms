@@ -7,7 +7,7 @@
  * # pedigreeMarkupService
  * Factory in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
     .factory('phenotypeMarkupService', function (annotatorService, annotationMarkupService) {
         return {
             markup: markup

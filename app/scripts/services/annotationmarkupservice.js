@@ -7,7 +7,7 @@
  * # annotationMarkupService
  * Factory in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
     .factory('annotationMarkupService', function ($sce) {
         return {
             markup: markup

@@ -7,7 +7,7 @@
  * # phenotypeService
  * Factory in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
     .factory('phenotypeService', function ($http, $q) {
         return {
             autocomplete: autocomplete

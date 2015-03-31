@@ -7,7 +7,7 @@
  * # pageService
  * Factory in the formsApp.
  */
-angular.module('formsApp')
+angular.module('cssApp')
   .factory('pageService', function () {
     // Service logic
     // ...
