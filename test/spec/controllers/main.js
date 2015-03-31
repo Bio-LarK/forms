@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('css3App'));
+  beforeEach(module('cssApp'));
 
   var MainCtrl,
     scope;
