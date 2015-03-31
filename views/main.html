@@ -1,0 +1,544 @@
+<div class="row"> <div class="row"> <div class="col-md-1"> </div> <div class="col-md-6"> <address> <strong>St Vincent's Hospital Sydney Limited, APA: 555-555-555</strong><br> Mailing Address: 370 Victoria St., Darlinghurst, NSW 2010<br> Fax: +61 2 9355 5871<br> Email: <a href="mailto:kccg-enquiries@garvan.org.au">kccg-enquiries@garvan.org.au</a> </address> </div> <div class="col-md-4"> </div> </div> <!-- progressbar --> <ul id="progressbar"> <li class="active">Step 1 <span>Patient Information</span></li> <li>Step 2 <br> <span>Requesting Practitioner Information</span></li> <li>Step 3 <br> <span>Clinical Information</span></li> <li>Step 4 <br> <span>Investigation Information</span></li> </ul> <div> <label>JSON Form Data</label> <div ng-model="genomic"><span>{{f1}}</span> <span>{{f2}}</span> <span>{{f3}}</span> <span>{{f4}}</span></div> </div> <form action="" method="POST" role="form" name="genomic" id="msform" name="userForm" ng-submit="submitForm()" novalidate> <fieldset> <h2 class="fs-title">Step 1 - Patient Information</h2> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Medical Record Number</label> <input ng-model="f1.patient.mrn" type="text" class="form-control" placeholder="Enter the medical record number"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Other Reference Number</label> <input ng-model="f1.patient.otherref" type="text" class="form-control" placeholder="Enter other reference no (if available)"> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group" ng-class="{ 'has-error' : f1.patient.surname.$invalid && !f1.patient.surname.$pristine }"> <label>Surname</label> <input ng-model="f1.patient.surname" type="text" class="form-control" placeholder="Enter the surname" required> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Given Name</label> <input ng-model="f1.patient.name" type="text" class="form-control" placeholder="Enter the given name" required> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>DOB</label> <input ng-model="f1.patient.dob" type="date" class="form-control" ui-mask="{{'99/99/9999'}}" placeholder="DD/MM/YYYY" required> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Sex</label> <md-radio-group ng-model="f1.patient.sex"> <md-radio-button value="male">Male</md-radio-button> <md-radio-button value="female">Female</md-radio-button> <md-radio-button value="unknown">Unknown</md-radio-button> </md-radio-group> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Mobile Number</label> <input ng-model="f1.patient.mobile" type="text" class="form-control" placeholder="Enter the mobile number"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Phone Number</label> <input ng-model="f1.patient.phone" type="text" class="form-control" placeholder="Enter the phone number"> </div> </div> </div> <h2 class="fs-title gap-top">Genomic Screen Consent Form</h2> <div class="row"> <div class="col-md-1"> <div class="form-group"> <label for="address">Signed</label> <md-checkbox ng-model="f1.health_pro.signed" class="signed"></md-checkbox> </div> </div> <div class="col-md-11 consenting_for_patient"> <label>Health Professional Name</label> <input ng-model="f1.health_pro.name" type="text" class="form-control" placeholder="Enter name of health professional consenting patient"> </div> <div ng-messages="signed.$error" ng-show=" f1.health_pro.signed == 0 " class="col-md-12"> <div ng-message="required"> Please contact your nearest genetic unit to discuss consent and patient management if consent not obtained </div> </div> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Autofill Address</label> <input ng-model="address" g-places-autocomplete type="text" class="form-control" name="autofill_address" id="autofill_address" placeholder="Use autofill address to auto-polulate address fields below"> </div> <md-input-container flex class="auto-filled-container"> <label>Street Address</label> <input ng-model="f1.patient.streetaddress" type="text" class="form-control auto-filled" name="address" id="address" placeholder="Enter the street address" required> <div ng-messages="address.$error"> <div ng-message="required">Street address is required</div> </div> </md-input-container> <div class="row"> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>City</label> <input ng-model="f1.patient.city" type="text" class="form-control auto-filled" placeholder="Enter the city" required> <div ng-messages="city.$error"> <div ng-message="required">City is required</div> </div> </md-input-container> </div> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>State</label> <input ng-model="f1.patient.state" type="text" class="form-control auto-filled" placeholder="Enter the state" required> <div ng-messages="state.$error"> <div ng-message="required">State is required</div> </div> </md-input-container> </div> </div> <div class="row"> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>Postcode</label> <input ng-model="f1.patient.postcode" type="text" class="form-control auto-filled" placeholder="Enter the postcode" required> <div ng-messages="postcode.$error"> <div ng-message="required">Postcode is required</div> </div> </md-input-container> </div> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>Country</label> <input ng-model="f1.patient.country" type="text" class="form-control auto-filled" placeholder="Enter the country" required> <div ng-messages="country.$error"> <div ng-message="required">Country is required</div> </div> </md-input-container> </div> </div> </div> </div> <div class="prev-next"> <input type="button" name="next" class="btn btn-primary next action-button pull-right" value="Next"> </div> </fieldset> <fieldset> <h2 class="fs-title">Step 2 - Requesting Practitioner Information - Referring Doctor</h2> <div class="form-group"> <label>Genomic testing reports will be sent to this address unless an alternative address is provided.</label> </div> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Surname</label> <input ng-model="f2.requester.surname" type="text" class="form-control" placeholder="Enter the surname"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Given Name</label> <input ng-model="f2.requester.name" type="text" class="form-control" placeholder="Enter the given name"> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Institution Name</label> <input ng-model="f2.requester.institution_name" type="text" class="form-control" placeholder="Enter the institution name"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Department</label> <input ng-model="f2.requester.department" type="text" class="form-control" placeholder="Enter the department"> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Mobile Number</label> <input ng-model="f2.requester.mobile" type="text" class="form-control" placeholder="Enter the mobile number"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Phone Number</label> <input ng-model="f2.requester.phone" type="text" class="form-control" placeholder="Enter the phone number"> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Fax Number</label> <input ng-model="f2.requester.fax" type="text" class="form-control" placeholder="Enter the fax number"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Provider Number</label> <input ng-model="f2.requester.provider_number" type="text" class="form-control" placeholder="Enter the provider number"> </div> </div> </div> <div class="form-group"> <label>Email</label> <input ng-model="f2.requester.email" type="email" class="form-control" placeholder="Enter the email"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label for="address">Autofill Address</label> <input ng-model="address" g-places-autocomplete type="text" class="form-control" placeholder="Use autofill address to auto-polulate address fields below"> </div> <md-input-container flex class="auto-filled-container"> <label>Street Address</label> <input ng-model="f2.requester.street_address" type="text" class="form-control auto-filled" placeholder="Enter the street address" required> <div ng-messages="p_address.$error"> <div ng-message="required">Street address is required</div> </div> </md-input-container> <div class="row"> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>City</label> <input ng-model="f2.requester.city" type="text" class="form-control auto-filled" placeholder="Enter the city" required> <div ng-messages="p_city.$error"> <div ng-message="required">City is required</div> </div> </md-input-container> </div> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>State</label> <input ng-model="f2.requester.state" type="text" class="form-control auto-filled" placeholder="Enter the state" required> <div ng-messages="p_state.$error"> <div ng-message="required">State is required</div> </div> </md-input-container> </div> </div> <div class="row"> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>Postcode</label> <input ng-model="f2.requester.postcode" type="text" class="form-control auto-filled" placeholder="Enter the postcode" required> <div ng-messages="p_postcode.$error"> <div ng-message="required">Postcode is required</div> </div> </md-input-container> </div> <div class="col-md-6"> <md-input-container flex class="auto-filled-container"> <label>Country</label> <input ng-model="f2.requester.postcode" type="text" class="form-control auto-filled" placeholder="Enter the country" required> <div ng-messages="p_country.$error"> <div ng-message="required">Country is required</div> </div> </md-input-container> </div> </div> </div> </div> <accordion close-others="true"> <accordion-group is-open="isopen"> <accordion-heading> <div class="acc-heading fs-title"> Send Copy of report to #1 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-right': isopen, 'glyphicon-chevron-down': !isopen}"></i> </div> </accordion-heading> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Name</label> <input ng-model="f2.requester.copy1.name" type="text" class="form-control" placeholder="Enter the name"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Practice</label> <input ng-model="f2.requester.copy1.practice" type="text" class="form-control" placeholder="Enter the practice name"> </div> </div> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Address (locality)</label> <input ng-model="f2.requester.copy1.locality" type="text" class="form-control" placeholder="Enter the practice locality"> </div> </div> </div> <accordion close-others="true"> <accordion-group is-open="isopenparent" class="send-copy"> <accordion-heading> <div class="acc-heading fs-title"> More Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-right': isopenparent, 'glyphicon-chevron-down': !isopenparent}"></i> </div> </accordion-heading> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Mobile Number</label> <input ng-model="f2.requester.copy1.mobile" type="text" class="form-control" placeholder="Enter the mobile number"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Phone/Fax Number</label> <input ng-model="f2.requester.copy1.phonefax" type="text" class="form-control" placeholder="Enter the phone/fax number"> </div> </div> </div> <div class="form-group"> <label>Email</label> <input ng-model="f2.requester.copy1.email" type="email" class="form-control" placeholder="Enter the email"> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>City</label> <input ng-model="f2.requester.copy1.city" type="text" class="form-control" placeholder="Enter the city"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>State</label> <input ng-model="f2.requester.copy1.state" type="text" class="form-control" placeholder="Enter the state"> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Postcode</label> <input ng-model="f2.requester.copy1.postcode" type="text" class="form-control" placeholder="Enter the postcode"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Country</label> <input ng-model="f2.requester.copy1.country" type="text" class="form-control" placeholder="Enter the country"> </div> </div> </div> </div> </div> </accordion-group> </accordion> </accordion-group> </accordion> <accordion close-others="true"> <accordion-group is-open="isopen2"> <accordion-heading> <div class="acc-heading fs-title"> Send Copy of report to #2 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-right': isopen2, 'glyphicon-chevron-down': !isopen2}"></i> </div> </accordion-heading> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Name</label> <input ng-model="f2.requester.copy2.name" type="text" class="form-control" placeholder="Enter the name"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Practice</label> <input ng-model="f2.requester.copy2.practice" type="text" class="form-control" placeholder="Enter the practice name"> </div> </div> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Address (locality)</label> <input ng-model="f2.requester.copy2.locality" type="text" class="form-control" placeholder="Enter the practice locality"> </div> </div> </div> <accordion close-others="true"> <accordion-group is-open="isopenparent2" class="send-copy"> <accordion-heading> <div class="acc-heading fs-title"> More Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-right': isopenparent2, 'glyphicon-chevron-down': !isopenparent2}"></i> </div> </accordion-heading> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Mobile Number</label> <input ng-model="f2.requester.copy2.mobile" type="text" class="form-control" placeholder="Enter the mobile number"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Phone/Fax Number</label> <input ng-model="f2.requester.copy2.phonefax" type="text" class="form-control" placeholder="Enter the phone/fax number"> </div> </div> </div> <div class="form-group"> <label>Email</label> <input ng-model="f2.requester.copy2.email" type="email" class="form-control" placeholder="Enter the email"> </div> </div> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>City</label> <input ng-model="f2.requester.copy2.city" type="text" class="form-control" placeholder="Enter the city"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>State</label> <input ng-model="f2.requester.copy2.state" type="text" class="form-control" placeholder="Enter the state"> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Postcode</label> <input ng-model="f2.requester.copy2.postcode" type="text" class="form-control" placeholder="Enter the postcode"> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Country</label> <input ng-model="f2.requester.copy2.country" type="text" class="form-control" placeholder="Enter the country"> </div> </div> </div> </div> </div> </accordion-group> </accordion> </accordion-group> </accordion>     <div class="prev-next"> <input type="button" name="previous" class="btn btn-primary previous action-button pull-left" value="Previous"> <input type="button" name="next" class="btn btn-primary next action-button pull-right" value="Next"> </div> </fieldset> <fieldset> <h2 class="fs-title">Step 3 - Clinical Information</h2> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Diagnosis</label> <ui-select multiple reset-search-input="true" ng-model="diagnosis.selectedDisorders" theme="bootstrap" ng-disabled="disabled"> <ui-select-match placeholder="Select disease name..."> {{ $item.name }} </ui-select-match> <ui-select-choices repeat="disorder in disorders | propsFilter: {name: $select.search}" refresh="refreshDisorders($select.search)" refresh-delay="0"> <div ng-bind-html="disorder.name | highlight: $select.search"></div> </ui-select-choices> </ui-select> </div> <div class="form-group"> <label>Clinical Phenotypes / Additional Features - Select from List</label> <ui-select reset-search-input="true" multiple ng-model="phenotype.selectedTerms" theme="bootstrap" ng-disabled="disabled"> <ui-select-match placeholder="Select a phenotype"> {{ $item.name }} </ui-select-match> <ui-select-choices repeat="term in phenotypeTerms | propsFilter: {name: $select.search}" refresh="refreshPhenotypeTerms($select.search)" refresh-delay="0"> <div ng-bind-html="term.name | highlight: $select.search"></div> </ui-select-choices> </ui-select> </div> <div class="form-group"> <label>Family History / Other Clinical Information</label> <textarea ng-model="f3.clinical.family_history" class="form-control" rows="3" placeholder="Add text description of other clinical information"></textarea> </div> <div class="form-group"> <label>Medications</label> <textarea ng-model="f3.clinical.medications" class="form-control" rows="3" placeholder="Add full text description of medications prescribed"></textarea> </div> </div> <div class="col-md-6"> <div class="form-group"> <label class="disabled">Pedigree (under development)</label> <div> <a href="http://panogram.github.io/panogram/" class="btn btn-default" target="_blank" disabled>Open Pedigree Editor <i class="fa fa-external-link"></i> </a> </div> </div> <div class="form-group"> <label>CGH/SNP Microarray</label> <textarea ng-model="f3.clinical.cgh_snp_microarray" class="form-control" rows="3" name="cgh_snp" id="cgh_snp" placeholder="Add text description of CGH/SNP microarray results"></textarea> </div> <div class="form-group"> <label>Previous Gene Tests</label> <textarea ng-model="f3.clinical.previous_gene_test" class="form-control" rows="3" name="previous_gene_test" id="previous_gene_test" placeholder="Add text description of previous gene tests"></textarea> </div> </div> </div> <div> <h2 class="fs-title gap-top">Pregnancy Information</h2> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-1"> <div class="form-group"> <label>Pregnant</label> <md-checkbox ng-model="f3.pregnancy.pregnant" class="pregnant"></md-checkbox> </div> </div> <div class="col-md-11"> <div class="form-group lmp_weeks"> <label>Date of Last Menstrual Period / Gestation</label> <input ng-model="f3.pregnancy.lmp_gestation" type="text" class="form-control" placeholder="Enter the date of last menstrual period / gestation"> </div> </div> </div> </div> </div> </div> <div class="prev-next"> <input type="button" name="previous" class="btn btn-primary previous action-button pull-left" value="Previous"> <input type="button" name="next" class="btn btn-primary next action-button pull-right" value="Next"> </div> </fieldset> <fieldset> <h2 class="fs-title">Step 4 - Investigation Information</h2> <div class="row"> <div class="col-md-6"> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Request</label> <md-radio-group ng-model="f4.investigation.request"> <md-radio-button value="whole-gnome">Whole genome sequencing</md-radio-button> <md-radio-button value="coding_region">Coding region analysis only</md-radio-button> <md-radio-button value="disease-gene-list">Disease gene list</md-radio-button> </md-radio-group> </div> </div> <div class="col-md-6"> <div class="form-group"> <label>Type</label> <md-checkbox ng-model="f4.investigation.type.diagnostic">Diagnostic</md-checkbox> <div ng-show="investigations_type_diagnostic == 1 "> only variants with established disease associations will be reported </div> <md-checkbox ng-model="f4.investigation.type.research">Research</md-checkbox> <div ng-show="investigations_type_research == 1 "> all variants reported </div> </div> </div> </div> <div class="form-group"> <label>Options</label> <md-radio-group ng-model="f4.investigation.options"> <md-radio-button value="report_carrier_status">Report carrier status for autosomal recessive (AR) conditions </md-radio-button> <md-radio-button value="exclude_adult_onset">Exclude adult onset disease genes (done automatically for minors) </md-radio-button> </md-radio-group> </div> <div class="row"> <div class="col-md-12"> <label>Reason for Request</label> </div> </div> <div class="row"> <div class="col-md-6"> <md-checkbox ng-model="f4.investigation.reason.confirm_clinical_diagnosis"> Confirm a clinical diagnosis </md-checkbox> <md-checkbox ng-model="f4.investigation.reason.exclude_molecular_diagnosis"> Exclude a molecular diagnosis </md-checkbox> <md-checkbox ng-model="f4.investigation.reason.pharmacogenomics"> Pharmacogenomics </md-checkbox> <md-checkbox ng-model="f4.investigation.reason.repeat_test"> Repeating a previous genomic test </md-checkbox> </div> <div class="col-md-6"> <md-checkbox ng-model="f4.investigation.reason.family_study"> As part of a family study </md-checkbox> <md-checkbox ng-model="f4.investigation.reason.treatment_decision"> To guide treatment decisions </md-checkbox> <md-checkbox ng-model="f4.investigation.reason.disease_status"> Monitoring of disease status </md-checkbox> <md-checkbox ng-model="f4.investigation.reason.re_interpretation"> Data re-interpretation </md-checkbox> </div> </div> <h2 class="fs-title gap-top">Specimen Information</h2> <div class="row"> <div class="col-md-6"> <div class="form-group"> <label>Specimen</label> <div class="row"> <div class="col-md-6"> <md-checkbox ng-model="f4.specimen._blood"> Blood </md-checkbox> <div ng-show=" f4.specimen._blood == 1 " class="subs"> <md-checkbox ng-model="f4.specimen.blood.etda_blood"> ETDA Blood </md-checkbox> <md-checkbox ng-model="f4.specimen.blood.serum"> Serum </md-checkbox> <md-checkbox ng-model="f4.specimen.blood.plasma"> Plasma </md-checkbox> </div> <md-checkbox ng-model="f4.specimen._fluids"> Fluids </md-checkbox> <div ng-show=" f4.specimen._fluids == 1 " class="subs"> <md-checkbox ng-model="f4.specimen.fluids.amniotic"> Amniotic </md-checkbox> <md-checkbox ng-model="f4.specimen.fluids.csf"> CSF </md-checkbox> <md-checkbox ng-model="f4.specimen.fluids.furine"> Urine </md-checkbox> <md-checkbox ng-model="f4.specimen.fluids.other"> Other Fluids </md-checkbox> </div> <md-checkbox ng-model="f4.specimen.dna"> DNA </md-checkbox> </div> <div class="col-md-6"> <md-checkbox ng-model="f4.specimen._cells"> Cells </md-checkbox> <div ng-show=" f4.specimen._cells == 1 " class="subs"> <md-checkbox ng-model="f4.specimen.cells.mouthwash"> Mouth Wash </md-checkbox> <md-checkbox ng-model="f4.specimen.cells.saliva"> Saliva </md-checkbox> <md-checkbox ng-model="f4.specimen.cells.cheek"> Cheek Brushings </md-checkbox> <md-checkbox ng-model="f4.specimen.cells.lines"> Cell Lines </md-checkbox> <md-checkbox ng-model="f4.specimen.cells.fibroblasts"> Fibroblasts </md-checkbox> </div> <md-checkbox ng-model="f4.specimen._tissue"> Solid Tissues </md-checkbox> <div ng-show=" f4.specimen._tissue == 1 " class="subs"> <md-checkbox ng-model="f4.specimen.tissue.cvs"> CVS </md-checkbox> <md-checkbox ng-model="f4.specimen.tissue.skin"> Skin </md-checkbox> <md-checkbox ng-model="f4.specimen.tissue.autopsy_sample"> Autopsy Sample </md-checkbox> <md-checkbox ng-model="f4.specimen.tissue.tumour"> Tumour </md-checkbox> <md-checkbox ng-model="f4.specimen.tissue.placenta"> Placenta </md-checkbox> <md-checkbox ng-model="f4.specimen.tissue.fine_needle_aspirate"> Fine Needle Aspirate </md-checkbox> <md-checkbox ng-model="f4.specimen.tissue.other"> Other Tissues </md-checkbox> </div> </div> </div> </div> </div> <div class="col-md-6"> <label>Other</label> <input ng-model="f4.specimen.other" type="text" class="form-control" placeholder="Enter other specimen"> </div> </div> </div> <div class="col-md-6"> <h2 class="fs-title">Billing Information</h2> <div class="row"> <div class="col-md-7"> <div class="form-group"> <label>Send Invoice To</label> <md-radio-group ng-model="requests" ng-model="f4.billing.invoiceto"> <md-radio-button value="patient">Patient</md-radio-button> <md-radio-button value="institution">Institution</md-radio-button> <md-radio-button value="medicare" disabled class="invoice-to-medicare"> Medicare </md-radio-button> </md-radio-group> </div> </div> <div class="col-md-5"> <label>Other</label> <input ng-model="f4.billing.other" type="text" class="form-control" placeholder="Enter send invoice to other"> </div> </div> <div class="form-group"> <label class="disabled">Medicare Number</label> <input ng-model="f4.billing.medicare_no" type="text" class="form-control disabled" placeholder="9999-99999-9-9" ui-mask="{{'9999-99999-9-9'}}" disabled> </div> <label>Was or will the patient be, at the time of the service or when the specimen is obtained (please tick)</label> <ol class="hospital-status"> <li> <md-checkbox ng-model="f4.billing.hospital.private_private_hospital" class="hospital-status"> a private patient in a private hospital or approved day hospital facility </md-checkbox> </li> <li> <md-checkbox ng-model="f4.billing.hospital.private_recognised_hospital" class="hospital-status"> a private patient in a recognised hospital </md-checkbox> </li> <li> <md-checkbox ng-model="f4.billing.hospital.public_recognised_hospital" class="hospital-status"> a public patient in a recognised hospital </md-checkbox> </li> <li> <md-checkbox ng-model="f4.billing.hospital.outpatient_recognised_hospital" class="hospital-status"> an outpatient of a recognised hospital </md-checkbox> </li> </ol> </div> </div> <div class="prev-next"> <input type="button" name="previous" class="btn btn-primary previous action-button pull-left" value="Previous"> <div class="form-group request_form_correct"> <md-checkbox ng-model="f4.request_form_correct"> I confirm that the information on this Genomic Screen Request form is correct </md-checkbox> </div> <input type="submit" name="next" class="btn btn-primary submit action-button pull-right" value="Submit"> </div> </fieldset> </form> </div>  <style>/*custom font*/
+    @import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+    /* Garvan Color Pallete
+        #003263     Dark Midnight Blue
+        #5D2A7E     Kingfisher Daisy
+        #CCD6E0     Mischika
+        #E5EAEE     Mystic
+        #EBEBEB     Lily White
+        #F5F5F5     Wild Sand
+        #335A81     St Tropaz
+        #F48222     Tango
+        #00B4CD     Iris Blue
+
+    */
+    .hospital-status .form-group {
+        margin-top: -20px;
+        padding-left: 20px;
+    }
+
+    ol.hospital-status {
+        counter-reset: list;
+        padding-left: 10px;
+        margin: 10px 0 30px;
+    }
+
+    ol.hospital-status > li {
+        list-style: none;
+    }
+
+    ol.hospital-status > li:before {
+        content: counter(list, lower-alpha) ") ";
+        counter-increment: list;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    legend {
+        margin-top: 24px;
+    }
+
+    .ui-select-match .btn-default {
+        background: #eee;
+    }
+
+    .btn-primary {
+        background: #5D2A7E;
+    }
+
+    .btn-primary:hover {
+        background: #F48222;
+    }
+
+    label {
+        color: #5D2A7E;
+        font-weight: normal;
+    }
+
+    .form-control {
+        border: 1px solid #e1d7e8;
+        color: #335A81;
+    }
+
+    .form-control::-webkit-input-placeholder {
+        color: #bbb;
+    }
+
+    .form-control::-webkit-datetime-edit {
+        color: #bbb;
+    }
+
+    body {
+        color: #335A81;
+        background: #E5EAEE;
+    }
+
+    a {
+        color: #F48222;
+    }
+
+    legend {
+        color: #335A81;
+    }
+
+    .navbar-default .navbar-brand {
+        font-family: montserrat, arial, verdana;
+    }
+
+    .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+        color: #555;
+        background-color: #E5EAEE;
+    }
+
+    .btn-primary:focus {
+        background: #F48222;
+        border: #F48222;
+    }
+
+    .btn:focus, .btn:active:focus, .btn.active:focus {
+        outline: thin dotted;
+        outline: 5px auto #aaa;
+        outline-offset: -2px;
+    }
+
+    .navbar-default {
+        background: #335A81;
+    }
+
+    #progressbar li {
+        color: #335A81;
+    }
+
+    #progressbar li:hover {
+        color: #F48222;
+    }
+
+    #progressbar li span {
+        display: block;
+    }
+
+    h2.gap-top {
+        margin: 30px 0 10px !important;
+    }
+
+    .acc-heading {
+        margin: 0px !important;
+    }
+
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+
+    .panel-heading:hover {
+        background: #5d2a7e;
+    }
+
+    .md-input {
+        background: #ffffff !important;
+        margin: 0px !important;
+    }
+
+    .auto-filled {
+        background: #f5f5f5 !important;
+        padding: 5px !important;
+        border: 1px solid #e1d7e8;
+    }
+
+    .auto-filled-container {
+        padding: 0px 0px 20px;
+        margin: 20px 0 -20px 0;
+    }
+
+    .form-control:focus {
+        border-color: #335A81;
+    }
+
+    md-input-container .md-placeholder, md-input-container label:not(.md-no-float) {
+        padding: 5px 0 0 5px;
+        margin: -5px 0 0 0;
+    }
+
+    md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label {
+        color: #5d2a7e;
+    }
+
+    md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input {
+        border-color: #5d2a7e;
+    }
+
+    md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value .md-input {
+        border-color: #a6db15;
+    }
+
+    md-input-container.md-default-theme.md-input-invalid [ng-message] {
+        display: block;
+    }
+
+    md-input-container [ng-message] {
+        display: none;
+    }
+
+    .md-switch-thumb, md-radio-button {
+        display: inline-block;
+        margin: 0px;
+    }
+
+    md-radio-button.md-default-theme.md-checked .md-off {
+        border-color: #F48222;
+    }
+
+    md-radio-button.md-default-theme .md-off {
+        background-color: #ffffff;
+        border-color: #5D2A7E;
+    }
+
+    md-radio-button.md-default-theme .md-on {
+        background-color: #5D2A7E;
+    }
+
+    md-radio-group.md-default-theme:focus:not(:empty) {
+        border-color: #fff;
+    }
+
+    md-checkbox {
+        margin: 0;
+    }
+
+    md-checkbox.md-default-theme .md-icon {
+        background-color: #ffffff;
+        border-color: #5D2A7E;
+    }
+
+    md-checkbox.md-default-theme.md-checked .md-icon {
+        background-color: #5D2A7E;
+    }
+
+    md-checkbox .md-container {
+        width: 14px;
+    }
+
+    md-radio-button .md-container {
+        width: 12px;
+    }
+
+    .ui-select-bootstrap .ui-select-choices-row.active > a {
+        color: #fff;
+        background-color: #5D2A7E;
+    }
+
+    .invoice-to-medicare .md-label {
+        color: #999;
+    }
+
+    label.disabled {
+        color: #999;
+    }
+
+    .subs {
+        margin: 0 0 20px 20px;
+    }
+
+    .subs .md-label {
+        font-size: 90%;
+    }
+
+    .consenting_for_patient {
+        padding-left: 30px;
+    }
+
+    .request_form_correct {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .lmp_weeks {
+        padding-left: 30px;
+    }
+
+    .signed {
+        margin: 2px 0 0 15px;
+    }
+
+    .test_urgency {
+        margin: 2px 0 0 4px;
+    }
+
+    .pregnant {
+        margin: 2px 0 0 20px;
+    }
+
+    .specimen {
+        display: inline-block;
+    }
+
+    .hospital-status {
+        display: inline-block;
+    }
+
+    .md-label {
+        color: #5D2A7E;
+    }
+
+    .accordion-toggle:focus {
+        outline: none;
+    }
+
+    .panel-body .panel-body {
+        background: #e5eaee;
+    }
+
+    .send-copy {
+        margin-top: 20px;
+    }
+
+    .submit {
+        margin-top: -40px !important;
+    }
+
+
+
+    /*basic reset*/
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: montserrat, arial, verdana;
+    }
+
+    /*form styles*/
+    #msform {
+        margin: 10px 0;
+        position: relative;
+    }
+
+    #msform h2 {
+        margin-top: 0px;
+    }
+
+    #msform fieldset {
+        border: 0 none;
+        border-radius: 3px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        box-sizing: border-box;
+        /*stacking fieldsets above each other*/
+        position: absolute;
+        width: 1170px;
+    }
+
+    /*Hide all except first fieldset*/
+    #msform fieldset:not(:first-of-type) {
+        display: none;
+    }
+
+    /*inputs*/
+    #msform input, #msform textarea {
+        padding: 0px 5px;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
+
+        font-size: 13px;
+        color: #335A81;
+    }
+
+    /*buttons*/
+    #msform .action-button {
+        width: 100px;
+
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 5px;
+    }
+
+    /*headings*/
+    .fs-title {
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #F48222;
+        margin-bottom: 20px;
+    }
+
+    .fs-subtitle {
+        font-weight: normal;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /*progressbar*/
+    #progressbar {
+        margin-bottom: 20px;
+        overflow: hidden;
+        /*CSS counters to number the steps*/
+        counter-reset: step;
+        z-index: 99;
+    }
+
+    #progressbar li {
+        list-style-type: none;
+        font-size: 14px;
+        width: 290px;
+        float: left;
+        position: relative;
+        text-align: center;
+        z-index-s: 199 !important; /*put it behind the numbers*/
+
+    }
+
+    #progressbar li:before {
+        content: counter(step);
+        counter-increment: step;
+        width: 30px;
+        line-height: 30px;
+        display: block;
+        font-size: 14px;
+        color: #333;
+        background: white;
+        border-radius: 3px;
+        margin: 0 auto 5px auto;
+    }
+
+    /*progressbar connectors*/
+    #progressbar li:after {
+        content: '';
+        width: 90%;
+        height: 3px;
+        background: white;
+        position: absolute;
+        left: -45%;
+        top: 13px;
+        z-index: 0; /*put it behind the numbers*/
+    }
+
+    #progressbar li:first-child:after {
+        /*connector not needed before the first step*/
+        content: none;
+    }
+
+    /*marking active/completed steps green*/
+    /*The number of the step and the connector before it = green*/
+    #progressbar li.active:before, #progressbar li.active:after {
+        background: #5D2A7E;
+        color: white;
+    }</style> <script>$(function () {
+
+//jQuery time
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var left, opacity, scale; //fieldset properties which we will animate
+        var animating; //flag to prevent quick multi-click glitches
+
+
+        $(".next").click(function () {
+
+            /*
+             $('#msform').validate({
+             rules: {
+             videoFile: {
+             required: true,
+             extension:'mov|mp4|mpeg|wmv|jpeg'
+             },
+             videoTitle: {
+             required: true,
+             },
+             videoDescription: {
+             required: true,
+             }
+             },
+             messages: {
+             videoFile: "Please specify a file",
+             videoTitle: "Title is required",
+             videoDescription: "Description is required"
+             }
+             });
+
+             if ((!$('#msform').valid())) {
+             return false;
+             };
+
+             */
+
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent().parent();
+            next_fs = $(this).parent().parent().next();
+
+            //activate next step on progressbar using the index of next_fs
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({opacity: 0}, {
+                step: function (now, mx) {
+                    //as the opacity of current_fs reduces to 0 - stored in "now"
+                    //1. scale current_fs down to 80%
+                    scale = 1 - (1 - now) * 0.2;
+                    //2. bring next_fs from the right(50%)
+                    left = (now * 50) + "%";
+                    //3. increase opacity of next_fs to 1 as it moves in
+                    opacity = 1 - now;
+                    current_fs.css({'transform': 'scale(' + scale + ')'});
+                    next_fs.css({'left': left, 'opacity': opacity});
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                //this comes from the custom easing plugin
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".previous").click(function () {
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent().parent();
+            previous_fs = $(this).parent().parent().prev();
+
+            //de-activate current step on progressbar
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+            //hide the current fieldsetfieldset with style
+            current_fs.animate({opacity: 0}, {
+                step: function (now, mx) {
+                    //as the opacity of current_fs reduces to 0 - stored in "now"
+                    //1. scale previous_fs from 80% to 100%
+                    scale = 0.8 + (1 - now) * 0.2;
+                    //2. take current_fs to the right(50%) - from 0%
+                    left = ((1 - now) * 50) + "%";
+                    //3. increase opacity of previous_fs to 1 as it moves in
+                    opacity = 1 - now;
+                    current_fs.css({'left': left});
+                    previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                //this comes from the custom easing plugin
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+
+    });</script>
