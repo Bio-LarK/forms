@@ -14,10 +14,11 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
-    'google.places',
+    'ngSanitize',
     'ui.bootstrap',
     'ui.select',
-    'ngMaterial'
+    'ngMaterial',
+    'google.places'
   ])
   .config(function ($routeProvider) {
     $routeProvider
