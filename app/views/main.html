@@ -29,7 +29,7 @@
     <div>
         <label>JSON Form Data</label>
 
-        <div ng-model="genomic"><span>{{f1}}</span> <span>{{f2}}</span> <span>{{f3}}</span> <span>{{f4}}</span></div>
+        <div ng-model="genomic" id="formJSON"><span id="f1">{{f1}}</span> <span>{{f2}}</span> <span>{{f3}}</span> <span>{{f4}}</span></div>
     </div>
 
     <form action="" method="POST" role="form" name="genomic" id="msform" name="formInfo" ng-submit="submitForm()" novalidate>
@@ -255,7 +255,7 @@
             </div>
 
             <div class="prev-next">
-                <input type="button" name="next" class="btn btn-primary next action-button pull-right" value="Next"/>
+                <input type="button" name="next" class="btn btn-primary next action-button pull-right test" value="Next"/>
             </div>
         </fieldset>
 
@@ -1200,9 +1200,10 @@
                     </md-checkbox>
                 </div>
 
-                <input type="submit"
+                <input type="button"
                        name="next"
                        class="btn btn-primary submit action-button pull-right"
+                       ng-click="createNewUser()"
                        value="Submit"/>
             </div>
 

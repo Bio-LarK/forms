@@ -17,7 +17,7 @@ angular.module('cssApp')
             'AngularJS',
             'Karma'
         ];
-
+  
 
         $scope.phenotypeFullTextChanged = phenotypeFullTextChanged;
         $scope.refreshPhenotypeTerms = refreshPhenotypeTerms;
@@ -181,7 +181,7 @@ angular.module('cssApp')
             });
 
             $(".submit").click(function () {
-                return false;
+                $.post( "submit",  $( "#f1" ).html()  );
             })
 
         });
