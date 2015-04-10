@@ -1,0 +1,508 @@
+        <fieldset>
+            <h2 class="fs-title">Step 2 - Requesting Practitioner Information - Referring Doctor</h2>
+
+
+            <div class="form-group">
+                <label>Genomic testing reports will be sent to this address unless an alternative address is
+                    provided.</label>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Surname</label>
+                                <input ng-model="s2.requester.surname"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the surname">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Given Name</label>
+                                <input ng-model="s2.requester.name"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the given name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Institution Name</label>
+                                <input ng-model="s2.requester.institution_name"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the institution name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Department</label>
+                                <input ng-model="s2.requester.department"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the department">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input ng-model="s2.requester.mobile"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the mobile number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input ng-model="s2.requester.phone"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the phone number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Fax Number</label>
+                                <input ng-model="s2.requester.fax"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the fax number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Provider Number</label>
+                                <input ng-model="s2.requester.provider_number"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the provider number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input ng-model="s2.requester.email"
+                               type="email" class="form-control"
+                               placeholder="Enter the email">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="address">Autofill Address</label>
+                        <input ng-model="address.address2"
+                               g-places-autocomplete
+                               type="text" class="form-control"
+                               placeholder="Use autofill address to auto-polulate address fields below">
+                    </div>
+
+
+                    <md-input-container flex class="auto-filled-container">
+                        <label>Street Address</label>
+                        <input ng-model="s2.requester.street_address"
+                               type="text"
+                               class="form-control auto-filled"
+                               placeholder="Enter the street address"
+                               required>
+
+                        <div ng-messages="p_address.$error">
+                            <div ng-message="required">Street address is required</div>
+                        </div>
+                    </md-input-container>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>City</label>
+                                <input ng-model="s2.requester.city"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the city"
+                                       required>
+
+                                <div ng-messages="p_city.$error">
+                                    <div ng-message="required">City is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>State</label>
+                                <input ng-model="s2.requester.state"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the state" required>
+
+                                <div ng-messages="p_state.$error">
+                                    <div ng-message="required">State is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>Postcode</label>
+                                <input ng-model="s2.requester.postcode"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the postcode"
+                                       required>
+
+                                <div ng-messages="p_postcode.$error">
+                                    <div ng-message="required">Postcode is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>Country</label>
+                                <input ng-model="s2.requester.postcode"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the country"
+                                       required>
+
+                                <div ng-messages="p_country.$error">
+                                    <div ng-message="required">Country is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <accordion close-others="true">
+
+                <accordion-group is-open="isopen">
+
+                    <accordion-heading>
+                        <div class="acc-heading fs-title">
+                            Send Copy of report to #1
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-right': isopen, 'glyphicon-chevron-down': !isopen}"></i>
+                        </div>
+                    </accordion-heading>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input ng-model="s2.requester.copy1.name"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="Enter the name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Practice</label>
+                                        <input ng-model="s2.requester.copy1.practice"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="Enter the practice name">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label>Address (locality)</label>
+                                <input ng-model="s2.requester.copy1.locality"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the practice locality">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <accordion close-others="true">
+
+                        <accordion-group is-open="isopenparent" class="send-copy">
+                            <accordion-heading>
+                                <div class="acc-heading fs-title">
+                                    More Information
+                                    <i class="pull-right glyphicon"
+                                       ng-class="{'glyphicon-chevron-right': isopenparent, 'glyphicon-chevron-down': !isopenparent}"></i>
+                                </div>
+                            </accordion-heading>
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Mobile Number</label>
+                                                <input ng-model="s2.requester.copy1.mobile"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the mobile number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Phone/Fax Number</label>
+                                                <input ng-model="s2.requester.copy1.phonefax"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the phone/fax number">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input ng-model="s2.requester.copy1.email"
+                                               type="email"
+                                               class="form-control"
+                                               placeholder="Enter the email">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input ng-model="s2.requester.copy1.city"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the city">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>State</label>
+                                                <input ng-model="s2.requester.copy1.state"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the state">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Postcode</label>
+                                                <input ng-model="s2.requester.copy1.postcode"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the postcode">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input ng-model="s2.requester.copy1.country"
+                                                       type="text" class="form-control"
+                                                       placeholder="Enter the country">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </accordion-group>
+            </accordion>
+
+            <accordion close-others="true">
+
+                <accordion-group is-open="isopen2">
+
+                    <accordion-heading>
+                        <div class="acc-heading fs-title">
+                            Send Copy of report to #2
+                            <i class="pull-right glyphicon"
+                               ng-class="{'glyphicon-chevron-right': isopen2, 'glyphicon-chevron-down': !isopen2}"></i>
+                        </div>
+                    </accordion-heading>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input ng-model="s2.requester.copy2.name"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="Enter the name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Practice</label>
+                                        <input ng-model="s2.requester.copy2.practice"
+                                               type="text"
+                                               class="form-control"
+                                               placeholder="Enter the practice name">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label>Address (locality)</label>
+                                <input ng-model="s2.requester.copy2.locality"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the practice locality">
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <accordion close-others="true">
+
+                        <accordion-group is-open="isopenparent2" class="send-copy">
+                            <accordion-heading>
+                                <div class="acc-heading fs-title">
+                                    More Information
+                                    <i class="pull-right glyphicon"
+                                       ng-class="{'glyphicon-chevron-right': isopenparent2, 'glyphicon-chevron-down': !isopenparent2}"></i>
+                                </div>
+                            </accordion-heading>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Mobile Number</label>
+                                                <input ng-model="s2.requester.copy2.mobile"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the mobile number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Phone/Fax Number</label>
+                                                <input ng-model="s2.requester.copy2.phonefax"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the phone/fax number">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input ng-model="s2.requester.copy2.email"
+                                               type="email"
+                                               class="form-control"
+                                               placeholder="Enter the email">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input ng-model="s2.requester.copy2.city"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the city">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>State</label>
+                                                <input ng-model="s2.requester.copy2.state"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the state">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Postcode</label>
+                                                <input ng-model="s2.requester.copy2.postcode"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="Enter the postcode">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input ng-model="s2.requester.copy2.country"
+                                                       type="text" class="form-control"
+                                                       placeholder="Enter the country">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+
+                </accordion-group>
+            </accordion>
+
+            </accordion-group>
+
+
+            </accordion>
+
+            </accordion-group>
+            </accordion>
+
+
+            <div class="prev-next">
+                <input type="button" name="previous" class="btn btn-primary previous action-button pull-left" ng-click="previousPage()"
+                       value="Previous"/>
+                <input type="button" name="next" class="btn btn-primary next action-button pull-right" ng-click="nextPage()" value="Next"/>
+            </div>
+
+        </fieldset>

@@ -41,190 +41,218 @@ angular
  * Controller of the formsApp
  */
 angular.module('cssApp')
-    .controller('MainCtrl', function (
-        $scope, pageService, phenotypeMarkupService,
-        phenotypeService,
-        disorderService) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
-  
-
-        $scope.phenotypeFullTextChanged = phenotypeFullTextChanged;
-        $scope.refreshPhenotypeTerms = refreshPhenotypeTerms;
-        $scope.refreshDisorders = refreshDisorders;
-
+    .controller('MainCtrl', function ($scope, $http, pageService, phenotypeMarkupService, phenotypeService, disorderService) {
         $scope.phenotype = {};
-        $scope.disorder = {};
         $scope.phenotypeTerms = [];
+        $scope.disorder = {};
         $scope.disorders = [];
 
+        $scope.s1 = {};
+        $scope.s2 = {};
+        $scope.s3 = {};
+        $scope.s4 = {};
+        $scope.address = {};
+
+        $scope.currentPage = 1;
+
+        $scope.nextPage = function() {
+
+            // check to make sure the form is completely valid
+            //if ($scope.cssform.$invalid) {
+                //alert('cant proceed without completing mandatory fields');
+           // }
+
+            //if ($scope.cssform.$valid) {
+                if($scope.currentPage < 4) {
+
+                    var current_fs = $("fieldset");
+
+                    
+                    current_fs.fadeOut(300, function() {
+
+                        $("#progressbar li:nth(" + ($scope.currentPage) + ")").addClass("active");
+                        current_fs.children().remove();
+
+                        current_fs.fadeIn(10, function() {
+                           $scope.currentPage++;
+                            $scope.$apply();
+                        });
+                    })
+                }
+           //}
 
 
-
-        $scope.formInfo = {};
-        $scope.saveData = function() {
-            console.log($scope.formInfo);
         };
 
+        $scope.previousPage = function() {
+            if($scope.currentPage > 1) {
 
+                var current_fs = $("fieldset");
+                
+                current_fs.fadeOut(300, function() {
 
+                    $("#progressbar li:nth(" + ($scope.currentPage - 1 ) + ")").removeClass("active");
+                    current_fs.children().remove();
 
-
-        $scope.openPanel = function(number) {
-            $scope.openPanels = [false, false, false, false, false, false, false];
-            $scope.openPanels[number] = true;
+                    current_fs.fadeIn(10, function() {
+                        $scope.currentPage--;
+                        $scope.$apply();
+                    });
+                })
+                
+            }
         };
 
-        activate();
+        $scope.previousVisible = function() {
+            if($scope.currentPage > 1) {
+                return true;
+            }
+        };
 
-        ////
+        $scope.nextVisible = function() {
+            if($scope.currentPage < 4) {
+                return true;
+            }
+        };
 
-        function activate() {
-            pageService.title = 'Complete Genome Sequencing Request';
+        $scope.submitVisible = function() {
+            if($scope.currentPage == 4) {
+                return true;
+            }
+        };
 
-            $scope.openPanel(0);
-        }
-
-
-        function phenotypeFullTextChanged(pedigree) {
+        $scope.phenotypeFullTextChanged = function(pedigree) {
             phenotypeMarkupService.markup(pedigree).then(function (markup) {
                 $scope.phenotypeFullTextPreview = markup;
             });
-        }
+        };
 
-        function refreshPhenotypeTerms(term) {
+        $scope.refreshPhenotypeTerms = function(term) {
             return phenotypeService.autocomplete(term).then(function(terms) {
                 $scope.phenotypeTerms = terms;
             });
-        }
+        };
 
-        function refreshDisorders(disorder) {
+        $scope.refreshDisorders = function(disorder) {
             return disorderService.autocomplete(disorder).then(function(disorders) {
                 $scope.disorders = disorders;
             });
-        }
+        };
 
-       $(function () {
+        $scope.$watch("address.address", function(newValue, oldValue) {
+            if(oldValue != newValue && newValue) {
+                var address = {
+                    subpremise: "",
+                    street_number: "",
+                    route: "",
+                    locality: "",
+                    country: "",
+                    administrative_area_level_1: "",
+                    postal_code: ""
+                };
 
-    //jQuery time
-            var current_fs, next_fs, previous_fs; //fieldsets
-            var left, opacity, scale; //fieldset properties which we will animate
-            var animating; //flag to prevent quick multi-click glitches
-
-
-            $(".next").click(function () {
-
-                /*
-                 $('#msform').validate({
-                 rules: {
-                 videoFile: {
-                 required: true,
-                 extension:'mov|mp4|mpeg|wmv|jpeg'
-                 },
-                 videoTitle: {
-                 required: true,
-                 },
-                 videoDescription: {
-                 required: true,
-                 }
-                 },
-                 messages: {
-                 videoFile: "Please specify a file",
-                 videoTitle: "Title is required",
-                 videoDescription: "Description is required"
-                 }
-                 });
-
-                 if ((!$('#msform').valid())) {
-                 return false;
-                 };
-
-                 */
-
-                if (animating) return false;
-                animating = true;
-
-                current_fs = $(this).parent().parent();
-                next_fs = $(this).parent().parent().next();
-
-                //activate next step on progressbar using the index of next_fs
-                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-                //show the next fieldset
-                next_fs.show();
-                //hide the current fieldset with style
-                current_fs.animate({opacity: 0}, {
-                    step: function (now, mx) {
-                        //as the opacity of current_fs reduces to 0 - stored in "now"
-                        //1. scale current_fs down to 80%
-                        scale = 1 - (1 - now) * 0.2;
-                        //2. bring next_fs from the right(50%)
-                        left = (now * 50) + "%";
-                        //3. increase opacity of next_fs to 1 as it moves in
-                        opacity = 1 - now;
-                        current_fs.css({'transform': 'scale(' + scale + ')'});
-                        next_fs.css({'left': left, 'opacity': opacity});
-                    },
-                    duration: 800,
-                    complete: function () {
-                        current_fs.hide();
-                        animating = false;
-                    },
-                    //this comes from the custom easing plugin
-                    easing: 'easeInOutBack'
+                angular.forEach($scope.address.address.address_components, function(add) {
+                    angular.forEach(add.types, function(type) {
+                        address[type] = {
+                            long_name: add.long_name,
+                            short_name: add.short_name
+                        };
+                    });
                 });
-            });
 
-            $(".previous").click(function () {
-                if (animating) return false;
-                animating = true;
+                if(!$scope.s1.hasOwnProperty("patient")) {
+                    $scope.s1.patient = {};
+                };
 
-                current_fs = $(this).parent().parent();
-                previous_fs = $(this).parent().parent().prev();
+                var number = [];
+                if(address.subpremise) {
+                    number.push(address.subpremise.long_name);
+                }
+                number.push(address.street_number.long_name)
+                number = number.join("/");
 
-                //de-activate current step on progressbar
-                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                $scope.s1.patient.street_address = [number, address.route.long_name].join(" ");
+                $scope.s1.patient.city = address.locality.long_name;
+                $scope.s1.patient.state = address.administrative_area_level_1.short_name;
+                $scope.s1.patient.postcode = address.postal_code.long_name;
+                $scope.s1.patient.country = address.country.long_name;
+                //$scope.s1.patient.fullAddress = newValue;
 
-                //show the previous fieldset
-                previous_fs.show();
-                //hide the current fieldsetfieldset with style
-                current_fs.animate({opacity: 0}, {
-                    step: function (now, mx) {
-                        //as the opacity of current_fs reduces to 0 - stored in "now"
-                        //1. scale previous_fs from 80% to 100%
-                        scale = 0.8 + (1 - now) * 0.2;
-                        //2. take current_fs to the right(50%) - from 0%
-                        left = ((1 - now) * 50) + "%";
-                        //3. increase opacity of previous_fs to 1 as it moves in
-                        opacity = 1 - now;
-                        current_fs.css({'left': left});
-                        previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
-                    },
-                    duration: 800,
-                    complete: function () {
-                        current_fs.hide();
-                        animating = false;
-                    },
-                    //this comes from the custom easing plugin
-                    easing: 'easeInOutBack'
+                if(typeof(newValue) == "object") {
+                    $scope.s1.address = "";
+                };
+            }
+        })
+
+        $scope.$watch("address.address2", function(newValue, oldValue) {
+            if(oldValue != newValue && newValue) {
+                var address2 = {
+                    subpremise: "",
+                    street_number: "",
+                    route: "",
+                    locality: "",
+                    country: "",
+                    administrative_area_level_1: "",
+                    postal_code: ""
+                };
+
+                angular.forEach($scope.address.address2.address_components, function(add) {
+                    angular.forEach(add.types, function(type) {
+                        address2[type] = {
+                            long_name: add.long_name,
+                            short_name: add.short_name
+                        };
+                    });
                 });
+
+                if(!$scope.s2.hasOwnProperty("requester")) {
+                    $scope.s2.requester = {};
+                };
+
+                var number = [];
+                if(address2.subpremise) {
+                    number.push(address2.subpremise.long_name);
+                }
+                number.push(address2.street_number.long_name)
+                number = number.join("/");
+
+                $scope.s2.requester.street_address  = [number, address2.route.long_name].join(" ");
+                $scope.s2.requester.city            = address2.locality.long_name;
+                $scope.s2.requester.state           = address2.administrative_area_level_1.short_name;
+                $scope.s2.requester.postcode        = address2.postal_code.long_name;
+                $scope.s2.requester.country         = address2.country.long_name;
+                //$scope.s2.requester.fullAddress = newValue;
+
+                if(typeof(newValue) == "object") {
+                    $scope.s2.address2 = "";
+                };
+            }
+        })
+
+
+
+
+
+        $scope.formSave = function() {
+            var postObject = new Object();
+            postObject.step1 = $scope.s1;
+            postObject.step2 = $scope.s2;
+            postObject.step3 = $scope.s3;
+            postObject.step4 = $scope.s4;
+
+            $http({
+                url: "api/submit",
+                method: "POST",
+                data: postObject
+            }).success(function(data, status, headers, config) { 
+                $scope.data = data;
+            }).error(function(data, status, headers, config) {
+                $scope.status = status;
             });
-
-            $(".submit").click(function () {
-                $.post( "/api/submit",  $( "#f1" ).html()  );
-                $.post( "/api/submit",  $( "#f2" ).html()  );
-                $.post( "/api/submit",  $( "#f3" ).html()  );
-                $.post( "/api/submit",  $( "#f4" ).html()  );
-            })
-
-        });
+        };
 
         
     });
-
 'use strict';
 
 /**

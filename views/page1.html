@@ -1,0 +1,225 @@
+        <fieldset>
+            <h2 class="fs-title">Step 1 - Patient Information</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Medical Record Number</label>
+                                <input ng-model="s1.patient.mrn"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the medical record number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Other Reference Number</label>
+                                <input ng-model="s1.patient.otherref"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter other reference no (if available)">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Surname</label>
+                                <input ng-model="s1.patient.surname"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the surname"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Given Name</label>
+                                <input ng-model="s1.patient.name"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the given name"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>DOB</label>
+                                <input ng-model="s1.patient.dob"
+                                       type="date"
+                                       class="form-control"
+                                       ui-mask="{{'99/99/9999'}}"
+                                       placeholder="DD/MM/YYYY"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sex</label>
+                                <md-radio-group ng-model="s1.patient.sex">
+                                    <md-radio-button value="male">Male</md-radio-button>
+                                    <md-radio-button value="female">Female</md-radio-button>
+                                    <md-radio-button value="unknown">Unknown</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input ng-model="s1.patient.mobile"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the mobile number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input ng-model="s1.patient.phone"
+                                       type="text"
+                                       class="form-control"
+                                       placeholder="Enter the phone number">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h2 class="fs-title gap-top">Genomic Screen Consent Form</h2>
+
+                    <div class="row">
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for="address">Signed</label>
+                                <md-checkbox ng-model="s1.health_pro.signed" class="signed"></md-checkbox>
+
+                            </div>
+                        </div>
+                        <div class="col-md-11 consenting_for_patient">
+                            <label>Health Professional Name</label>
+                            <input ng-model="s1.health_pro.name"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Enter name of health professional consenting patient">
+
+                        </div>
+
+                        <div ng-messages="signed.$error" ng-show=" s1.health_pro.signed == 0 " class="col-md-12">
+                            <div ng-message="required">
+                                Please contact your nearest genetic unit to discuss consent and patient management if
+                                consent not obtained
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Autofill Address</label>
+                        <input ng-model="address.address"
+                               g-places-autocomplete
+                               type="text"
+                               class="form-control"
+                               name="autofill_address"
+                               id="autofill_address"
+                               placeholder="Use autofill address to auto-polulate address fields below">
+                    </div>
+
+
+                    <md-input-container flex class="auto-filled-container">
+                        <label>Street Address</label>
+                        <input ng-model="s1.patient.street_address"
+                               type="text"
+                               class="form-control auto-filled"
+                               name="address" id="address"
+                               placeholder="Enter the street address"
+                               required>
+
+                        <div ng-messages="address.$error">
+                            <div ng-message="required">Street address is required</div>
+                        </div>
+                    </md-input-container>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>City</label>
+                                <input ng-model="s1.patient.city"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the city"
+                                       required>
+
+                                <div ng-messages="city.$error">
+                                    <div ng-message="required">City is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>State</label>
+                                <input ng-model="s1.patient.state"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the state"
+                                       required>
+
+                                <div ng-messages="state.$error">
+                                    <div ng-message="required">State is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>Postcode</label>
+                                <input ng-model="s1.patient.postcode"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the postcode"
+                                       required>
+
+                                <div ng-messages="postcode.$error">
+                                    <div ng-message="required">Postcode is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6">
+                            <md-input-container flex class="auto-filled-container">
+                                <label>Country</label>
+                                <input ng-model="s1.patient.country"
+                                       type="text"
+                                       class="form-control auto-filled"
+                                       placeholder="Enter the country"
+                                       required>
+
+                                <div ng-messages="country.$error">
+                                    <div ng-message="required">Country is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="prev-next">
+                <input type="button" name="next" class="btn btn-primary next action-button pull-right" ng-click="nextPage()" value="Next"/>
+            </div>
+
+        </fieldset>

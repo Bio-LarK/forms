@@ -1,0 +1,136 @@
+<fieldset>
+            <h2 class="fs-title">Step 3 - Clinical Information</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Diagnosis</label>
+                        <ui-select
+                                multiple
+                                reset-search-input="true"
+                                ng-model="s3.clinical.diagnosis.selectedDisorders"
+                                theme="bootstrap">
+                            <ui-select-match placeholder="Select a diagnosis">
+                                {{ $item.name }}
+                            </ui-select-match>
+                            <ui-select-choices repeat="disorder in disorders | propsFilter: {name: $select.search}"
+                                               refresh="refreshDisorders($select.search)"
+                                               refresh-delay="0">
+                                <div ng-bind-html="disorder.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Clinical Phenotypes / Additional Features - Select from List</label>
+                        <ui-select
+                                reset-search-input="true"
+                                multiple
+                                ng-model="s3.clinical.phenotype.selectedTerms"
+                                theme="bootstrap"
+                                ng-disabled="disabled">
+                            <ui-select-match placeholder="Select a phenotype">
+                                {{ $item.name }}
+                            </ui-select-match>
+                            <ui-select-choices repeat="term in phenotypeTerms | propsFilter: {name: $select.search}"
+                                               refresh="refreshPhenotypeTerms($select.search)"
+                                               refresh-delay="0">
+                                <div ng-bind-html="term.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Family History / Other Clinical Information</label>
+                        <textarea ng-model="s3.clinical.family_history"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Add text description of other clinical information"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Medications</label>
+                        <textarea ng-model="s3.clinical.medications"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Add full text description of medications prescribed"></textarea>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="disabled">Pedigree (under development)</label>
+
+                        <div>
+                            <a href="http://panogram.github.io/panogram/" class="btn btn-default" target="_blank"
+                               disabled>Open
+                                Pedigree
+                                Editor <i
+                                        class="fa fa-external-link"></i> </a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>CGH/SNP Microarray</label>
+                        <textarea ng-model="s3.clinical.cgh_snp_microarray"
+                                  class="form-control"
+                                  rows="3"
+                                  name="cgh_snp"
+                                  id="cgh_snp"
+                                  placeholder="Add text description of CGH/SNP microarray results"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Previous Gene Tests</label>
+                        <textarea ng-model="s3.clinical.previous_gene_test"
+                                  class="form-control"
+                                  rows="3"
+                                  name="previous_gene_test"
+                                  id="previous_gene_test"
+                                  placeholder="Add text description of previous gene tests"></textarea>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div>
+                <h2 class="fs-title gap-top">Pregnancy Information</h2>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col-md-1">
+
+                                <div class="form-group">
+                                    <label>Pregnant</label>
+                                    <md-checkbox ng-model="s3.pregnancy.pregnant" class="pregnant"></md-checkbox>
+                                </div>
+                            </div>
+
+                            <div class="col-md-11">
+                                <div class="form-group lmp_weeks">
+                                    <label>Date of Last Menstrual Period / Gestation</label>
+                                    <input ng-model="s3.pregnancy.lmp_gestation"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Enter the date of last menstrual period / gestation">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prev-next">
+                <input type="button" name="previous" class="btn btn-primary previous action-button pull-left" ng-click="previousPage()"
+                       value="Previous"/>
+                <input type="button" name="next" class="btn btn-primary next action-button pull-right" ng-click="nextPage()" value="Next"/>
+            </div>
+        </fieldset>

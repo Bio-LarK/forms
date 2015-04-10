@@ -8958,31 +8958,37 @@ label.disabled {
   margin-top: -40px !important;
 }
 
+/* line 398, ../../app/styles/main.scss */
+.ui-select-highlight {
+  font-weight: normal;
+  color: #F48222;
+}
+
 /*basic reset*/
-/* line 401, ../../app/styles/main.scss */
+/* line 406, ../../app/styles/main.scss */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* line 406, ../../app/styles/main.scss */
+/* line 411, ../../app/styles/main.scss */
 body {
   font-family: montserrat, arial, verdana;
 }
 
 /*form styles*/
-/* line 411, ../../app/styles/main.scss */
+/* line 416, ../../app/styles/main.scss */
 #msform {
   margin: 10px 0;
   position: relative;
 }
 
-/* line 416, ../../app/styles/main.scss */
+/* line 421, ../../app/styles/main.scss */
 #msform h2 {
   margin-top: 0px;
 }
 
-/* line 420, ../../app/styles/main.scss */
+/* line 425, ../../app/styles/main.scss */
 #msform fieldset {
   border: 0 none;
   border-radius: 3px;
@@ -8995,13 +9001,13 @@ body {
 }
 
 /*Hide all except first fieldset*/
-/* line 432, ../../app/styles/main.scss */
+/* line 437, ../../app/styles/main.scss */
 #msform fieldset:not(:first-of-type) {
   display: none;
 }
 
 /*inputs*/
-/* line 437, ../../app/styles/main.scss */
+/* line 442, ../../app/styles/main.scss */
 #msform input, #msform textarea {
   padding: 0px 5px;
   border-radius: 3px;
@@ -9013,7 +9019,7 @@ body {
 }
 
 /*buttons*/
-/* line 449, ../../app/styles/main.scss */
+/* line 454, ../../app/styles/main.scss */
 #msform .action-button {
   width: 100px;
   font-weight: bold;
@@ -9025,7 +9031,7 @@ body {
 }
 
 /*headings*/
-/* line 462, ../../app/styles/main.scss */
+/* line 467, ../../app/styles/main.scss */
 .fs-title {
   font-size: 15px;
   text-transform: uppercase;
@@ -9033,7 +9039,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* line 469, ../../app/styles/main.scss */
+/* line 474, ../../app/styles/main.scss */
 .fs-subtitle {
   font-weight: normal;
   font-size: 13px;
@@ -9042,7 +9048,7 @@ body {
 }
 
 /*progressbar*/
-/* line 477, ../../app/styles/main.scss */
+/* line 482, ../../app/styles/main.scss */
 #progressbar {
   margin-bottom: 20px;
   overflow: hidden;
@@ -9051,7 +9057,7 @@ body {
   z-index: 99;
 }
 
-/* line 485, ../../app/styles/main.scss */
+/* line 490, ../../app/styles/main.scss */
 #progressbar li {
   list-style-type: none;
   font-size: 14px;
@@ -9063,7 +9069,7 @@ body {
   /*put it behind the numbers*/
 }
 
-/* line 496, ../../app/styles/main.scss */
+/* line 501, ../../app/styles/main.scss */
 #progressbar li:before {
   content: counter(step);
   counter-increment: step;
@@ -9078,7 +9084,7 @@ body {
 }
 
 /*progressbar connectors*/
-/* line 510, ../../app/styles/main.scss */
+/* line 515, ../../app/styles/main.scss */
 #progressbar li:after {
   content: '';
   width: 90%;
@@ -9091,7 +9097,7 @@ body {
   /*put it behind the numbers*/
 }
 
-/* line 521, ../../app/styles/main.scss */
+/* line 526, ../../app/styles/main.scss */
 #progressbar li:first-child:after {
   /*connector not needed before the first step*/
   content: none;
@@ -9099,7 +9105,7 @@ body {
 
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
-/* line 528, ../../app/styles/main.scss */
+/* line 533, ../../app/styles/main.scss */
 #progressbar li.active:before, #progressbar li.active:after {
   background: #5D2A7E;
   color: white;
@@ -9108,7 +9114,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
-  /* line 542, ../../app/styles/main.scss */
+  /* line 547, ../../app/styles/main.scss */
   .header,
   .marketing,
   .footer {
@@ -9117,13 +9123,13 @@ body {
   }
 
   /* Space out the masthead */
-  /* line 549, ../../app/styles/main.scss */
+  /* line 554, ../../app/styles/main.scss */
   .header {
     margin-bottom: 30px;
   }
 
   /* Remove the bottom border on the jumbotron for visual effect */
-  /* line 553, ../../app/styles/main.scss */
+  /* line 558, ../../app/styles/main.scss */
   .jumbotron {
     border-bottom: 0;
   }

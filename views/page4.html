@@ -1,0 +1,300 @@
+ <fieldset>
+            <h2 class="fs-title">Step 4 - Investigation Information</h2>
+
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Request</label>
+
+                                <md-radio-group ng-model="s4.investigation.request">
+                                    <md-radio-button value="whole-gnome">Whole genome sequencing</md-radio-button>
+                                    <md-radio-button value="coding_region">Coding region analysis only</md-radio-button>
+                                    <md-radio-button value="disease-gene-list">Disease gene list</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Type</label>
+
+                                <md-checkbox ng-model="s4.investigation.type.diagnostic">Diagnostic</md-checkbox>
+                                <div ng-show="investigations_type_diagnostic == 1 ">
+                                    only variants with established disease associations will be reported
+                                </div>
+                                <md-checkbox ng-model="s4.investigation.type.research">Research</md-checkbox>
+                                <div ng-show="investigations_type_research == 1 ">
+                                    all variants reported
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Options</label>
+                        <md-radio-group ng-model="s4.investigation.options">
+                            <md-radio-button value="report_carrier_status">Report carrier status for autosomal
+                                recessive (AR) conditions
+                            </md-radio-button>
+                            <md-radio-button value="exclude_adult_onset">Exclude adult onset disease genes (done
+                                automatically for minors)
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Reason for Request</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <md-checkbox ng-model="s4.investigation.reason.confirm_clinical_diagnosis">
+                                Confirm a clinical diagnosis
+                            </md-checkbox>
+                            <md-checkbox ng-model="s4.investigation.reason.exclude_molecular_diagnosis">
+                                Exclude a molecular diagnosis
+                            </md-checkbox>
+                            <md-checkbox ng-model="s4.investigation.reason.pharmacogenomics">
+                                Pharmacogenomics
+                            </md-checkbox>
+                            <md-checkbox ng-model="s4.investigation.reason.repeat_test">
+                                Repeating a previous genomic test
+                            </md-checkbox>
+                        </div>
+                        <div class="col-md-6">
+                            <md-checkbox ng-model="s4.investigation.reason.family_study">
+                                As part of a family study
+                            </md-checkbox>
+                            <md-checkbox ng-model="s4.investigation.reason.treatment_decision">
+                                To guide treatment decisions
+                            </md-checkbox>
+                            <md-checkbox ng-model="s4.investigation.reason.disease_status">
+                                Monitoring of disease status
+                            </md-checkbox>
+                            <md-checkbox ng-model="s4.investigation.reason.re_interpretation">
+                                Data re-interpretation
+                            </md-checkbox>
+                        </div>
+
+                    </div>
+
+
+                    <h2 class="fs-title gap-top">Specimen Information</h2>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Specimen</label>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <md-checkbox ng-model="s4.specimen._blood">
+                                            Blood
+                                        </md-checkbox>
+                                        <div ng-show=" s4.specimen._blood == 1 " class="subs">
+                                            <md-checkbox ng-model="s4.specimen.blood.etda_blood">
+                                                ETDA Blood
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.blood.serum">
+                                                Serum
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.blood.plasma">
+                                                Plasma
+                                            </md-checkbox>
+                                        </div>
+
+                                        <md-checkbox ng-model="s4.specimen._fluids">
+                                            Fluids
+                                        </md-checkbox>
+                                        <div ng-show=" s4.specimen._fluids == 1 " class="subs">
+                                            <md-checkbox ng-model="s4.specimen.fluids.amniotic">
+                                                Amniotic
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.fluids.csf">
+                                                CSF
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.fluids.furine">
+                                                Urine
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.fluids.other">
+                                                Other Fluids
+                                            </md-checkbox>
+                                        </div>
+                                        <md-checkbox ng-model="s4.specimen.dna">
+                                            DNA
+                                        </md-checkbox>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <md-checkbox ng-model="s4.specimen._cells">
+                                            Cells
+                                        </md-checkbox>
+                                        <div ng-show=" s4.specimen._cells == 1 " class="subs">
+                                            <md-checkbox ng-model="s4.specimen.cells.mouthwash">
+                                                Mouth Wash
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.cells.saliva">
+                                                Saliva
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.cells.cheek">
+                                                Cheek Brushings
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.cells.lines">
+                                                Cell Lines
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.cells.fibroblasts">
+                                                Fibroblasts
+                                            </md-checkbox>
+                                        </div>
+                                        <md-checkbox ng-model="s4.specimen._tissue">
+                                            Solid Tissues
+                                        </md-checkbox>
+                                        <div ng-show=" s4.specimen._tissue == 1 " class="subs">
+                                            <md-checkbox ng-model="s4.specimen.tissue.cvs">
+                                                CVS
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.tissue.skin">
+                                                Skin
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.tissue.autopsy_sample">
+                                                Autopsy Sample
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.tissue.tumour">
+                                                Tumour
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.tissue.placenta">
+                                                Placenta
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.tissue.fine_needle_aspirate">
+                                                Fine Needle Aspirate
+                                            </md-checkbox>
+                                            <md-checkbox ng-model="s4.specimen.tissue.other">
+                                                Other Tissues
+                                            </md-checkbox>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Other</label>
+                            <input ng-model="s4.specimen.other"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Enter other specimen">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <h2 class="fs-title">Billing Information</h2>
+
+                    <div class="row">
+
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label>Send Invoice To</label>
+
+                                <md-radio-group ng-model="requests" ng-model="s4.billing.invoiceto">
+                                    <md-radio-button value="patient">Patient</md-radio-button>
+                                    <md-radio-button value="institution">Institution</md-radio-button>
+                                    <md-radio-button value="medicare" disabled class="invoice-to-medicare">
+                                        Medicare
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-5">
+                            <label>Other</label>
+                            <input ng-model="s4.billing.other"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Enter send invoice to other">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="disabled">Medicare Number</label>
+                        <input ng-model="s4.billing.medicare_no"
+                               type="text"
+                               class="form-control disabled"
+                               placeholder="9999-99999-9-9"
+                               ui-mask="{{'9999-99999-9-9'}}"
+                               disabled>
+                    </div>
+
+                    <label>Was or will the patient be, at the time of the service or when the specimen is obtained
+                        (please
+                        tick)</label>
+
+                    <ol class="hospital-status">
+                        <li>
+                            <md-checkbox ng-model="s4.billing.hospital.private_private_hospital"
+                                         class="hospital-status">
+                                a private patient in a private hospital or approved day hospital facility
+                            </md-checkbox>
+                        </li>
+                        <li>
+                            <md-checkbox ng-model="s4.billing.hospital.private_recognised_hospital"
+                                         class="hospital-status">
+                                a private patient in a recognised hospital
+                            </md-checkbox>
+                        </li>
+                        <li>
+                            <md-checkbox ng-model="s4.billing.hospital.public_recognised_hospital"
+                                         class="hospital-status">
+                                a public patient in a recognised hospital
+                            </md-checkbox>
+                        </li>
+                        <li>
+                            <md-checkbox ng-model="s4.billing.hospital.outpatient_recognised_hospital"
+                                         class="hospital-status">
+                                an outpatient of a recognised hospital
+                            </md-checkbox>
+                        </li>
+                    </ol>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="prev-next">
+
+                <input type="button"
+                       name="previous"
+                       class="btn btn-primary previous action-button pull-left"
+                       ng-click="previousPage()"
+                       value="Previous"/>
+
+                <div class="form-group request_form_correct">
+                    <md-checkbox ng-model="s4.request_form_correct">
+                        I confirm that the information on this Genomic Screen Request form is correct
+                    </md-checkbox>
+                </div>
+
+                <input type="button"
+                       name="next"
+                       class="btn btn-primary submit action-button pull-right"
+                       ng-click="formSave()"
+                       value="Submit"/>
+            </div>
+
+
+        </fieldset>
