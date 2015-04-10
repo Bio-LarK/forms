@@ -178,9 +178,9 @@ angular.module('cssApp')
                 $scope.s1.patient.country = address.country.long_name;
                 //$scope.s1.patient.fullAddress = newValue;
 
-                if(typeof(newValue) == "object") {
-                    $scope.s1.address = "";
-                };
+                //if(typeof(newValue) == "object") {
+                   // $scope.s1.address = "";
+                //};
             }
         })
 
@@ -223,9 +223,9 @@ angular.module('cssApp')
                 $scope.s2.requester.country         = address2.country.long_name;
                 //$scope.s2.requester.fullAddress = newValue;
 
-                if(typeof(newValue) == "object") {
-                    $scope.s2.address2 = "";
-                };
+                //if(typeof(newValue) == "object") {
+                //    $scope.s2.address2 = "";
+                //};
             }
         })
 
@@ -235,13 +235,18 @@ angular.module('cssApp')
 
         $scope.formSave = function() {
             var postObject = new Object();
-            postObject.step1 = $scope.s1;
-            postObject.step2 = $scope.s2;
-            postObject.step3 = $scope.s3;
-            postObject.step4 = $scope.s4;
+            postObject.patient              = $scope.s1.patient;
+            postObject.health_pro           = $scope.s1.health_pro;
+            postObject.requester            = $scope.s2.requester;
+            postObject.clinical             = $scope.s3.clinical;
+            postObject.pregnancy            = $scope.s3.pregnancy;
+            postObject.investigation        = $scope.s4.investigation;
+            postObject.billing              = $scope.s4.billing;
+            postObject.specimen             = $scope.s4.specimen;
+            postObject.request_form_correct = $scope.s4.request_form_correct;
 
             $http({
-                url: "api/submit",
+                url: "http://localhost:9797/api",
                 method: "POST",
                 data: postObject
             }).success(function(data, status, headers, config) { 

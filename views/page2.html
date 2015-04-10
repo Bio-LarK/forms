@@ -120,7 +120,7 @@
                                placeholder="Enter the street address"
                                required>
 
-                        <div ng-messages="p_address.$error">
+                        <div ng-messages="s2.requester.street_address.$error">
                             <div ng-message="required">Street address is required</div>
                         </div>
                     </md-input-container>
@@ -136,7 +136,7 @@
                                        placeholder="Enter the city"
                                        required>
 
-                                <div ng-messages="p_city.$error">
+                                <div ng-messages="s2.requester.city.$error">
                                     <div ng-message="required">City is required</div>
                                 </div>
                             </md-input-container>
@@ -149,7 +149,7 @@
                                        class="form-control auto-filled"
                                        placeholder="Enter the state" required>
 
-                                <div ng-messages="p_state.$error">
+                                <div ng-messages="s2.requester.state.$error">
                                     <div ng-message="required">State is required</div>
                                 </div>
                             </md-input-container>
@@ -166,7 +166,7 @@
                                        placeholder="Enter the postcode"
                                        required>
 
-                                <div ng-messages="p_postcode.$error">
+                                <div ng-messages="s2.requester.postcode.$error">
                                     <div ng-message="required">Postcode is required</div>
                                 </div>
                             </md-input-container>
@@ -174,13 +174,13 @@
                         <div class="col-md-6">
                             <md-input-container flex class="auto-filled-container">
                                 <label>Country</label>
-                                <input ng-model="s2.requester.postcode"
+                                <input ng-model="s2.requester.country"
                                        type="text"
                                        class="form-control auto-filled"
                                        placeholder="Enter the country"
                                        required>
 
-                                <div ng-messages="p_country.$error">
+                                <div ng-messages="s2.requester.country.$error">
                                     <div ng-message="required">Country is required</div>
                                 </div>
                             </md-input-container>

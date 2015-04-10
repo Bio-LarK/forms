@@ -45,6 +45,11 @@
                                        class="form-control"
                                        placeholder="Enter the given name"
                                        required>
+
+                                    <div ng-show=" cssform.name.$touched"> tt
+                                      <span ng-show-x="cssform.name.$error.required">Tell us your email.</span>
+                                      
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -146,7 +151,7 @@
                                placeholder="Enter the street address"
                                required>
 
-                        <div ng-messages="address.$error">
+                        <div ng-messages="s1.patient.street_address.$error">
                             <div ng-message="required">Street address is required</div>
                         </div>
                     </md-input-container>
@@ -162,7 +167,7 @@
                                        placeholder="Enter the city"
                                        required>
 
-                                <div ng-messages="city.$error">
+                                <div ng-messages="s1.patient.city.$error">
                                     <div ng-message="required">City is required</div>
                                 </div>
                             </md-input-container>
@@ -176,7 +181,7 @@
                                        placeholder="Enter the state"
                                        required>
 
-                                <div ng-messages="state.$error">
+                                <div ng-messages="s1.patient.state.$error">
                                     <div ng-message="required">State is required</div>
                                 </div>
                             </md-input-container>
@@ -193,7 +198,7 @@
                                        placeholder="Enter the postcode"
                                        required>
 
-                                <div ng-messages="postcode.$error">
+                                <div ng-messages="s1.patient.postcode.$error">
                                     <div ng-message="required">Postcode is required</div>
                                 </div>
                             </md-input-container>
@@ -207,7 +212,7 @@
                                        placeholder="Enter the country"
                                        required>
 
-                                <div ng-messages="country.$error">
+                                <div ng-messages="s1.patient.country.$error">
                                     <div ng-message="required">Country is required</div>
                                 </div>
                             </md-input-container>
